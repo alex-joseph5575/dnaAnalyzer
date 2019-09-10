@@ -6,8 +6,8 @@ int main(int argc, char** argv)
 {
   ifstream myFile;
   string line;
-  myFile.open("TestFile.txt");
-  while(getLine(myFile, line))
+  myFile.open(argv[1]);
+  while(getline(myFile, line))
   {
     cout << line << '\n';
   }
