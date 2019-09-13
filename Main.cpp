@@ -48,7 +48,7 @@ int main(int argc, char** argv)
     {
       //counts up number of nucleotides in file
       sum++;
-
+      cout << line[i] << endl;
       //grabs current character from the line and uppercases
       tempLetter = line[i];
       toupper(tempLetter);
@@ -199,6 +199,17 @@ int main(int argc, char** argv)
   GT_probability = (GT_probability / (float) (sum / 2)) * 100.0f;
   GG_probability = (GG_probability / (float) (sum / 2)) * 100.0f;
   myFile.close();
+
+
+  // Writing output
+  ofstream outputFile("alexjoseph.out");
+  outputFile << "Name: Alex Joseph" << endl;
+  outputFile << "ID: 2307047" << endl;
+  outputFile << endl;
+  outputFile << "Sum: " << sum << endl;
+  outputFile << "Mean: " << mean << endl;
+  outputFile << "Variance: " << variance << endl;
+  outputFile << "Standard Deviation: " << standard_deviation << endl;
 
 
   return 0;
