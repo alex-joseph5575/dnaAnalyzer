@@ -31,9 +31,11 @@ int main(int argc, char** argv)
   float GC_probability = 0.0f; //Probability of an 'GC' nucleotide pair
   float GT_probability = 0.0f; //Probability of an 'GT' nucleotide pair
   float GG_probability = 0.0f; //Probability of an 'GG' nucleotide pair
-  char tempLetter;
+  char tempLetter; //
   char firstLetter;
   char secondLetter;
+  double a, b, c;
+  const double pi = 3.141592653;
 
   //Prepares file to be read
   ifstream myFile;
@@ -44,11 +46,10 @@ int main(int argc, char** argv)
   while(getline(myFile, line))
   {
     number_of_strings++;
-    for (int i = 0; i < line.length(); ++i)
+    for (int i = 0; i < line.length()-1; ++i)
     {
       //counts up number of nucleotides in file
       sum++;
-      cout << line[i] << endl;
       //grabs current character from the line and uppercases
       tempLetter = line[i];
       toupper(tempLetter);
@@ -210,7 +211,36 @@ int main(int argc, char** argv)
   outputFile << "Mean: " << mean << endl;
   outputFile << "Variance: " << variance << endl;
   outputFile << "Standard Deviation: " << standard_deviation << endl;
+  outputFile << "Probability of \"A\" nucleotide: " << A_probability << "%" << endl;
+  outputFile << "Probability of \"C\" nucleotide: " << C_probability << "%" << endl;
+  outputFile << "Probability of \"T\" nucleotide: " << T_probability << "%" << endl;
+  outputFile << "Probability of \"G\" nucleotide: " << G_probability << "%" << endl;
+  outputFile << "Probability of \"AA\" pair: " << AA_probability << "%" << endl;
+  outputFile << "Probability of \"AC\" pair: " << AC_probability << "%" << endl;
+  outputFile << "Probability of \"AT\" pair: " << AT_probability << "%" << endl;
+  outputFile << "Probability of \"AG\" pair: " << AG_probability << "%" << endl;
+  outputFile << "Probability of \"CA\" pair: " << CA_probability << "%" << endl;
+  outputFile << "Probability of \"CC\" pair: " << CC_probability << "%" << endl;
+  outputFile << "Probability of \"CT\" pair: " << CT_probability << "%" << endl;
+  outputFile << "Probability of \"CG\" pair: " << CG_probability << "%" << endl;
+  outputFile << "Probability of \"TA\" pair: " << TA_probability << "%" << endl;
+  outputFile << "Probability of \"TC\" pair: " << TC_probability << "%" << endl;
+  outputFile << "Probability of \"TT\" pair: " << TT_probability << "%" << endl;
+  outputFile << "Probability of \"TG\" pair: " << TG_probability << "%" << endl;
+  outputFile << "Probability of \"GA\" pair: " << GA_probability << "%" << endl;
+  outputFile << "Probability of \"GC\" pair: " << GC_probability << "%" << endl;
+  outputFile << "Probability of \"GT\" pair: " << GT_probability << "%" << endl;
+  outputFile << "Probability of \"GG\" pair: " << GG_probability << "%" << endl;
+  outputFile << endl;
 
+  //Gaussian distribution calculation and output
+  srand (time(NULL));
+  for (int i = 0; i < 1000; ++i)
+  {
+    a = (double) (rand() % 100) / 100.0;
+    b = (double) (rand() % 100) / 100.0;
+    c = sqrt(-2.0 * log(a)) * cos(2.0 * pi * b);
+  }
 
   return 0;
 }
