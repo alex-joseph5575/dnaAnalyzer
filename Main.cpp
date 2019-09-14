@@ -5,12 +5,14 @@
 using namespace std;
 int main(int argc, char** argv)
 {
+  char tempLetter;
+  char firstLetter;
+  char secondLetter;
   int sum = 0; // total number of characters in the file
   int tempSum = 0; // temporary sum for each line in the file
   int number_of_strings = 0; // number of lines in the file
+  int tempNum = 0;
   float mean = 0.0f; // sum / number_of_strings
-  double variance = 0.0; // Measure of distance from mean for each value
-  double standard_deviation = 0.0; // Square root of variance
   float A_probability = 0.0f; //Probability of an 'A' nucleotide
   float C_probability = 0.0f; //Probability of a 'C' nucleotide
   float T_probability = 0.0f; //Probability of a 'T' nucleotide
@@ -31,10 +33,9 @@ int main(int argc, char** argv)
   float GC_probability = 0.0f; //Probability of an 'GC' nucleotide pair
   float GT_probability = 0.0f; //Probability of an 'GT' nucleotide pair
   float GG_probability = 0.0f; //Probability of an 'GG' nucleotide pair
-  char tempLetter; //
-  char firstLetter;
-  char secondLetter;
-  double a, b, c;
+  double variance = 0.0; // Measure of distance from mean for each value
+  double standard_deviation = 0.0; // Square root of variance
+  double a, b, c, d;
   const double pi = 3.141592653;
 
   //Prepares file to be read
@@ -240,6 +241,29 @@ int main(int argc, char** argv)
     a = (double) (rand() % 100) / 100.0;
     b = (double) (rand() % 100) / 100.0;
     c = sqrt(-2.0 * log(a)) * cos(2.0 * pi * b);
+    d = (standard_deviation * c) + mean;
+    outputFile << c << endl;
+    /*for (int k = 0; k < c; ++k)
+    {
+      tempNum = (rand() % 100) + 1;
+      if (tempNum <= A_probability)
+      {
+        outputFile << 'A';
+      }
+      else if (tempNum > A_probability && tempNum <= A_probability + C_probability)
+      {
+        outputFile << 'C';
+      }
+      else if (tempNum > A_probability + C_probability && tempNum <= A_probability + C_probability + T_probability)
+      {
+        outputFile << 'T';
+      }
+      else
+      {
+        outputFile << 'G';
+      }
+    }
+    outputFile << endl;*/
   }
 
   return 0;
