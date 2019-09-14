@@ -12,28 +12,28 @@ int main(int argc, char** argv)
   int tempSum; // temporary sum for each line in the file
   int number_of_strings; // number of lines in the file
   int tempNum;
-  int counter = 0;
+  int counter = 0; // counts which loop iteration the program is on
   float mean; // sum / number_of_strings
-  float A_probability = 0.0f; //Probability of an 'A' nucleotide
-  float C_probability = 0.0f; //Probability of a 'C' nucleotide
-  float T_probability = 0.0f; //Probability of a 'T' nucleotide
-  float G_probability = 0.0f; //Probability of a 'G' nucleotide
-  float AA_probability = 0.0f; //Probability of an 'AA' nucleotide pair
-  float AC_probability = 0.0f; //Probability of an 'AC' nucleotide pair
-  float AT_probability = 0.0f; //Probability of an 'AT' nucleotide pair
-  float AG_probability = 0.0f; //Probability of an 'AG' nucleotide pair
-  float CA_probability = 0.0f; //Probability of an 'CA' nucleotide pair
-  float CC_probability = 0.0f; //Probability of an 'CC' nucleotide pair
-  float CT_probability = 0.0f; //Probability of an 'CT' nucleotide pair
-  float CG_probability = 0.0f; //Probability of an 'CG' nucleotide pair
-  float TA_probability = 0.0f; //Probability of an 'TA' nucleotide pair
-  float TC_probability = 0.0f; //Probability of an 'TC' nucleotide pair
-  float TT_probability = 0.0f; //Probability of an 'TT' nucleotide pair
-  float TG_probability = 0.0f; //Probability of an 'TG' nucleotide pair
-  float GA_probability = 0.0f; //Probability of an 'GA' nucleotide pair
-  float GC_probability = 0.0f; //Probability of an 'GC' nucleotide pair
-  float GT_probability = 0.0f; //Probability of an 'GT' nucleotide pair
-  float GG_probability = 0.0f; //Probability of an 'GG' nucleotide pair
+  float A_probability; //Probability of an 'A' nucleotide
+  float C_probability; //Probability of a 'C' nucleotide
+  float T_probability; //Probability of a 'T' nucleotide
+  float G_probability; //Probability of a 'G' nucleotide
+  float AA_probability; //Probability of an 'AA' nucleotide pair
+  float AC_probability; //Probability of an 'AC' nucleotide pair
+  float AT_probability; //Probability of an 'AT' nucleotide pair
+  float AG_probability; //Probability of an 'AG' nucleotide pair
+  float CA_probability; //Probability of an 'CA' nucleotide pair
+  float CC_probability; //Probability of an 'CC' nucleotide pair
+  float CT_probability; //Probability of an 'CT' nucleotide pair
+  float CG_probability; //Probability of an 'CG' nucleotide pair
+  float TA_probability; //Probability of an 'TA' nucleotide pair
+  float TC_probability; //Probability of an 'TC' nucleotide pair
+  float TT_probability; //Probability of an 'TT' nucleotide pair
+  float TG_probability; //Probability of an 'TG' nucleotide pair
+  float GA_probability; //Probability of an 'GA' nucleotide pair
+  float GC_probability; //Probability of an 'GC' nucleotide pair
+  float GT_probability; //Probability of an 'GT' nucleotide pair
+  float GG_probability; //Probability of an 'GG' nucleotide pair
   double variance; // Measure of distance from mean for each value
   double standard_deviation; // Square root of variance
   double a, b, c, d;
@@ -75,7 +75,7 @@ int main(int argc, char** argv)
     GC_probability = 0.0f;
     GT_probability = 0.0f;
     GG_probability = 0.0f;
-    
+
     myFile.open(input);
     //Loops through first time to determine sum, mean, number of lines, and probability of each single nucleotide
     while(getline(myFile, line))
@@ -236,7 +236,7 @@ int main(int argc, char** argv)
     GG_probability = (GG_probability / (float) (sum / 2)) * 100.0f;
     myFile.close();
 
-
+    //Appends to file instead of truncating if not on first iteration of loop
     if (counter == 0)
     {
       outputFile.open("alexjoseph.out");
@@ -315,6 +315,8 @@ int main(int argc, char** argv)
       outputFile << endl;
     }
     outputFile.close();
+
+    //Prompts user for next file
     cout << "Would you like to process another list? (Y/N)" << endl;
     cin >> inputC;
     if (inputC == 'Y')
